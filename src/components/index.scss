@@ -1,0 +1,147 @@
+$link-color: #0c0091;
+$canvas-width: 900px;
+$canvas-height: 500px;
+
+html {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  height: 100%;
+  font-family: 'Open Sans', Arial, 'Lucida Grande', sans-serif;
+  margin: 0;
+}
+
+a {
+  color: $link-color;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px $link-color;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.content {
+  height: 100vh;
+  width: 100vw;
+}
+
+.name {
+  width: 100%;
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 30px;
+}
+
+.blurb {
+  width: 82%;
+  margin: auto;
+  font-size: 2rem;
+}
+
+.links ul {
+  font-size: 2rem;
+}
+
+/* Small screens */
+@media (max-width: 1024px) {
+  .links {
+    width: 80%;
+    margin: auto;
+  }
+
+  li.invader {
+    display: none;
+  }
+}
+
+/* Big screens */
+@media (min-width: 1025px) {
+  body {
+    background-color: #282831;
+  }
+
+  .bizcard {
+    position: relative;
+    top: 10%;
+    width: 825px;
+    margin: auto;
+    background-color: white;
+    padding: 20px 0;
+  }
+
+  .links {
+    width: 95%;
+    margin-left: 2.5%;
+  }
+
+  .links ul {
+    width: 100%;
+    display: table;
+    table-layout: fixed;
+    overflow: hidden;
+    padding: 0;
+    margin-top: 40px;
+  }
+
+  .links li {
+    display: table-cell;
+    *float: left;
+    /* improve IE7 */
+    text-align: center;
+    font-size: 2.3rem;
+  }
+
+  .links li.invader {
+    background-image: url('../images/space-invader.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+  }
+
+  .gameDiv {
+    top: 5%;
+    width: $canvas-width;
+    height: $canvas-height;
+    margin: auto;
+    position: relative;
+  }
+
+  .game-canvas {
+    width: $canvas-width;
+    height: $canvas-height;
+    border: 1px solid white;
+    background-color: black;
+  }
+
+  .backButton {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    cursor: pointer;
+    color: white;
+  }
+
+  .soundIcon {
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    left: 5px;
+    top: 5px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+
+    &.soundOff {
+      background-image: url('../images/sound-icon-off.png');
+    }
+
+    &.soundOn {
+      background-image: url('../images/sound-icon-on.png');
+    }
+  }
+}

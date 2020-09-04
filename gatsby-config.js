@@ -1,11 +1,11 @@
 if (process.env.ENVIROMENT !== 'production') {
-  require('dotenv').config()
+  require('dotenv').config();
 }
 
 const contentfulConfig = {
   spaceId: process.env.SPACE_ID,
   accessToken: process.env.ACCESS_TOKEN,
-}
+};
 
 module.exports = {
   siteMetadata: {
@@ -14,7 +14,7 @@ module.exports = {
   plugins: [
     'gatsby-plugin-react-helmet',
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: 'gatsby-plugin-manifest',
       options: {
         name: 'gatsby-starter-contentful-typescript',
         short_name: 'starter',
@@ -22,19 +22,17 @@ module.exports = {
         background_color: '#663399',
         theme_color: '#663399',
         display: 'minimal-ui',
-        icon: 'src/images/gatsby-icon.png', // This path is relative to the root of the site.
+        icon: 'static/favicon.png', // This path is relative to the root of the site.
       },
     },
     'gatsby-plugin-offline',
-    `gatsby-plugin-typescript`,
+    'gatsby-plugin-typescript',
     'gatsby-transformer-remark',
     'gatsby-plugin-sharp',
     {
-      resolve: `gatsby-source-contentful`,
+      resolve: 'gatsby-source-contentful',
       options: contentfulConfig,
     },
-    {
-      resolve: `gatsby-plugin-emotion`,
-    },
+    'gatsby-plugin-sass',
   ],
-}
+};

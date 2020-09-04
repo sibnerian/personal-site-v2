@@ -1,15 +1,13 @@
-import React from 'react'
-import { Helmet } from 'react-helmet'
-import { StaticQuery, graphql } from 'gatsby'
-import styled from '@emotion/styled'
+import React from 'react';
+import { Helmet } from 'react-helmet';
+import { StaticQuery, graphql } from 'gatsby';
 
-import Header from './header'
-
-import './layout.css'
+import './animate.css';
+import './index.scss';
 
 type Props = {
-  children: React.ReactNode
-}
+  children: React.ReactNode;
+};
 
 const Layout = ({ children }: Props) => (
   <StaticQuery
@@ -32,19 +30,15 @@ const Layout = ({ children }: Props) => (
           ]}
         >
           <html lang="en" />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Press+Start+2P&display=swap"
+            rel="stylesheet"
+          />
         </Helmet>
-        <Header siteTitle={data.site.siteMetadata.title} />
-        <Container style={{}}>{children}</Container>
+        <div className="content">{children}</div>
       </>
     )}
   />
-)
+);
 
-export default Layout
-
-const Container = styled.div`
-  margin: 0 auto;
-  max-width: 960px;
-  padding: 0px 1.0875rem 1.45rem;
-  padding-top: 0;
-`
+export default Layout;

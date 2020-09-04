@@ -1,23 +1,43 @@
-import React, { Component } from 'react'
-import { Link } from 'gatsby'
-import { css } from 'emotion'
+import React, { useState, useEffect } from 'react';
 
-import Layout from '../components/layout'
+import Index from '../components/index';
+import Bizcard from '../components/bizcard';
+import Game from '../components/game';
+import { mute } from '../game/sounds';
 
-const header = css({
-  color: '#0505',
-})
-
-class IndexPage extends Component {
-  render() {
-    return (
-      <Layout>
-        <h1 className={header}>Hi people</h1>
-        <p>Welcome to your new Gatsby site.</p>
-        <p>Now go build something great.</p>
-        <Link to="/page-2/">Go to page 2</Link>
-      </Layout>
-    )
-  }
+export default function IndexPage() {
+  const [invaderPressed, setInvaderPressed] = useState(false);
+  const [hingeEffectCompleted, setHingeEffectCompleted] = useState(false);
+  useEffect(() => {
+    if (!invaderPressed) {
+      return () => {};
+    }
+    const handle = setTimeout(() => {
+      setHingeEffectCompleted(true);
+    }, 1800);
+    return () => clearTimeout(handle);
+  }, [invaderPressed]);
+  return (
+    <Index>
+      <>
+        {hingeEffectCompleted && <Game />}
+        {hingeEffectCompleted && (
+          <span
+            className="backButton"
+            onClick={() => document.location.reload()}
+          >
+            {' '}
+            &lt;&lt; Back{' '}
+          </span>
+        )}
+        <Bizcard
+          onPressInvader={() => {
+            mute();
+            setInvaderPressed(true);
+          }}
+          invaderPressed={invaderPressed}
+        />
+      </>
+    </Index>
+  );
 }
-export default IndexPage
