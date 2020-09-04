@@ -9,15 +9,15 @@ const contentfulConfig = {
 
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Contentful TypeScript starter',
+    title: 'Ian Sibner',
   },
   plugins: [
     'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'gatsby-starter-contentful-typescript',
-        short_name: 'starter',
+        name: 'sibnerian',
+        short_name: 'sibnerian',
         start_url: '/',
         background_color: '#663399',
         theme_color: '#663399',
