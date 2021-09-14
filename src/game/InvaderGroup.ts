@@ -115,7 +115,6 @@ export class InvaderGroup extends GameObject {
       }
     }
     invaderSounds[this.soundIndex].play();
-    console.log(this.soundIndex, 'play');
     this.soundIndex = (this.soundIndex + 1) % invaderSounds.length;
   }
 
