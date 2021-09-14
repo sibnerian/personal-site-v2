@@ -13,10 +13,10 @@ export default function Bizcard({ onPressInvader, invaderPressed }: Props) {
     <StaticQuery
       query={graphql`
         query BizCardQuery {
-          contentfulTextForIndexPageBusinessCardContentRichTextNode {
-            id
-            json
-            nodeType
+          contentfulTextForIndexPage {
+            businessCardContent {
+              raw
+            }
           }
         }
       `}
@@ -27,8 +27,9 @@ export default function Bizcard({ onPressInvader, invaderPressed }: Props) {
           <div className="name">Ian Sibner</div>
           <div className="blurb">
             {documentToReactComponents(
-              data.contentfulTextForIndexPageBusinessCardContentRichTextNode
-                .json
+              JSON.parse(
+                data.contentfulTextForIndexPage.businessCardContent.raw,
+              ),
             )}
           </div>
           <div className="links">
