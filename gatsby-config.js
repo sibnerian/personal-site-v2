@@ -29,7 +29,7 @@ module.exports = {
       resolve: 'gatsby-plugin-google-gtag',
       options: {
         trackingIds: [
-          'G-55DHFZVLW4', // Google Analytics / GA
+          process.env.GOOGLE_ANALYTICS_TOKEN, // Google Analytics / GA
         ],
       },
     },
