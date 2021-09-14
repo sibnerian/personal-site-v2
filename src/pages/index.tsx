@@ -32,6 +32,7 @@ export default function IndexPage() {
         )}
         <Bizcard
           onPressInvader={() => {
+            window.gtag('event', 'invader_press');
             mute();
             setInvaderPressed(true);
           }}

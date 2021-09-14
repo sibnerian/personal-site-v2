@@ -17,9 +17,11 @@ export class UFO extends Ship {
 
     this.pointValue = 50 * Math.ceil(Math.random() * 3);
   }
+
   move() {
     return this.shift(this.velX, this.velY);
   }
+
   draw() {
     if (this.exploded) {
       this.ctx.textAlign = 'center';
@@ -34,5 +36,12 @@ export class UFO extends Ship {
     } else {
       return super.draw();
     }
+  }
+
+  explode() {
+    super.explode();
+    window.gtag('event', 'explode_ufo', {
+      'event_category': 'game',
+    });
   }
 }

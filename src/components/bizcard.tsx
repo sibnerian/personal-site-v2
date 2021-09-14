@@ -1,6 +1,7 @@
 import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { OutboundLink } from 'gatsby-plugin-google-gtag';
 
 type Props = {
   onPressInvader: () => void;
@@ -33,13 +34,19 @@ export default function Bizcard({ onPressInvader, invaderPressed }: Props) {
           <div className="links">
             <ul>
               <li>
-                <a href="mailto:sibnerian@gmail.com">Email</a>
+                <OutboundLink href="mailto:sibnerian@gmail.com">
+                  Email
+                </OutboundLink>
               </li>
               <li>
-                <a href="https://www.linkedin.com/in/sibnerian">LinkedIn</a>
+                <OutboundLink href="https://www.linkedin.com/in/sibnerian">
+                  LinkedIn
+                </OutboundLink>
               </li>
               <li>
-                <a href="http://github.com/sibnerian">Github</a>
+                <OutboundLink href="http://github.com/sibnerian">
+                  Github
+                </OutboundLink>
               </li>
               <li className="invader" onClick={onPressInvader}>
                 <a href="#"> </a>

@@ -5,10 +5,12 @@
   "author": "Ian Sibner <sibnerian@gmail.com>",
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^14.1.1",
+    "@types/gtag.js": "0.0.7",
     "@types/react-helmet": "^6.0.0",
     "buzz": "^1.2.1",
     "dotenv": "^8.2.0",
     "gatsby": "^2.21.33",
+    "gatsby-plugin-google-gtag": "^3.13.0",
     "gatsby-plugin-manifest": "^2.4.3",
     "gatsby-plugin-offline": "^3.2.2",
     "gatsby-plugin-react-helmet": "^3.3.1",

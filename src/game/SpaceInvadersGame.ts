@@ -54,6 +54,9 @@ export class SpaceInvadersGame {
   }
 
   reset() {
+    window.gtag('event', 'new_game', {
+      'event_category': 'game',
+    });
     this.clearCanvas();
     this.ticks = 0;
     this.lives = 2;
@@ -279,6 +282,9 @@ export class SpaceInvadersGame {
   }
 
   pause() {
+    window.gtag('event', 'pause', {
+      'event_category': 'game',
+    });
     this.paused = true;
     this.ctx.textAlign = 'center';
     this.ctx.font = '20px "Press Start 2P"';
@@ -300,6 +306,9 @@ export class SpaceInvadersGame {
     ) {
       return;
     }
+    window.gtag('event', 'resume', {
+      'event_category': 'game',
+    });
     this.paused = false;
     this.clearCanvas();
     this.invaders.draw();
@@ -310,6 +319,11 @@ export class SpaceInvadersGame {
   }
 
   loseGame() {
+    window.gtag('event', 'lose_game', {
+      'event_category': 'game',
+      'event_label': 'Game over (score is value)',
+      'value': this.score,
+    });
     this.loop.stop();
     this.clearCanvas();
     this.started = false;

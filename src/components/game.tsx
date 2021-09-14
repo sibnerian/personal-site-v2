@@ -29,8 +29,14 @@ export default function Game({}: Props) {
         className={`soundIcon ${muted ? 'soundOff' : 'soundOn'}`}
         onClick={() => {
           if (muted) {
+            window.gtag('event', 'unmute', {
+              'event_category': 'game',
+            });
             unmute();
           } else {
+            window.gtag('event', 'mute', {
+              'event_category': 'game',
+            });
             mute();
           }
           setMuted(!muted);
