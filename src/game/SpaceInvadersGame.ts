@@ -5,6 +5,9 @@ import { InvaderGroup } from './InvaderGroup';
 import { BulletGroup } from './BulletGroup';
 import { UFO } from './UFO';
 
+const GAME_TICKS_PER_SECOND = 45;
+const GAME_TICK_MS = 1000 / GAME_TICKS_PER_SECOND;
+
 export class SpaceInvadersGame {
   private readonly ctx: CanvasRenderingContext2D;
   private readonly bulletFreq: number;
@@ -24,6 +27,7 @@ export class SpaceInvadersGame {
   private bullets?: BulletGroup;
   private playerBullets?: BulletGroup;
   private UFO?: UFO;
+  private elapsedSinceTickMs: number = 0;
 
   constructor(private readonly canvas: HTMLCanvasElement) {
     this.canvas = canvas;
@@ -38,10 +42,7 @@ export class SpaceInvadersGame {
     this.keyUpFn = (e: KeyboardEvent) => this.onKeyUp(e);
     document.addEventListener('keydown', this.keyDownFn);
     document.addEventListener('keyup', this.keyUpFn);
-    this.loop = rafLoop(() => {
-      this.tick();
-      this.ticks++;
-    });
+    this.loop = rafLoop((dt: number) => this.advanceGameClock(dt));
   }
 
   start() {
@@ -69,6 +70,23 @@ export class SpaceInvadersGame {
     this.started = true;
     this.paused = false;
     this.loop.start();
+  }
+
+  advanceGameClock(dt: number) {
+    if (this.paused) {
+      this.elapsedSinceTickMs = 0;
+      return;
+    }
+
+    this.elapsedSinceTickMs += dt;
+
+    if (this.elapsedSinceTickMs < GAME_TICK_MS || !this.started) {
+      return;
+    }
+
+    this.tick();
+    this.ticks++;
+    this.elapsedSinceTickMs = 0;
   }
 
   onKeyDown(e: KeyboardEvent) {
