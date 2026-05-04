@@ -139,9 +139,6 @@ export class Invader extends Ship {
     this.image = EXPLODE_SPRITE;
     this.shift((this.width - INVADER_WIDTH) / 2, 0);
     this.width = INVADER_WIDTH;
-    window.gtag('event', 'explode_invader', {
-      'event_category': 'game',
-    });
   }
 
   swapSprite() {

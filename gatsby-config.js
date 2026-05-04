@@ -7,40 +7,38 @@ const contentfulConfig = {
   accessToken: process.env.ACCESS_TOKEN,
 };
 
+const hasContentfulConfig =
+  contentfulConfig.spaceId != null && contentfulConfig.accessToken != null;
+
+const plugins = [
+  'gatsby-plugin-react-helmet',
+  {
+    resolve: 'gatsby-plugin-manifest',
+    options: {
+      name: 'sibnerian',
+      short_name: 'sibnerian',
+      start_url: '/',
+      background_color: '#663399',
+      theme_color: '#663399',
+      display: 'minimal-ui',
+      icon: 'static/favicon.png', // This path is relative to the root of the site.
+    },
+  },
+  'gatsby-plugin-offline',
+  'gatsby-plugin-typescript',
+  'gatsby-transformer-remark',
+  'gatsby-plugin-image',
+  'gatsby-plugin-sharp',
+  hasContentfulConfig && {
+    resolve: 'gatsby-source-contentful',
+    options: contentfulConfig,
+  },
+  'gatsby-plugin-sass',
+].filter(Boolean);
+
 module.exports = {
   siteMetadata: {
     title: 'Ian Sibner',
   },
-  plugins: [
-    'gatsby-plugin-react-helmet',
-    {
-      resolve: 'gatsby-plugin-manifest',
-      options: {
-        name: 'sibnerian',
-        short_name: 'sibnerian',
-        start_url: '/',
-        background_color: '#663399',
-        theme_color: '#663399',
-        display: 'minimal-ui',
-        icon: 'static/favicon.png', // This path is relative to the root of the site.
-      },
-    },
-    {
-      resolve: 'gatsby-plugin-google-gtag',
-      options: {
-        trackingIds: [
-          process.env.GOOGLE_ANALYTICS_TOKEN, // Google Analytics / GA
-        ],
-      },
-    },
-    'gatsby-plugin-offline',
-    'gatsby-plugin-typescript',
-    'gatsby-transformer-remark',
-    'gatsby-plugin-sharp',
-    {
-      resolve: 'gatsby-source-contentful',
-      options: contentfulConfig,
-    },
-    'gatsby-plugin-sass',
-  ],
+  plugins,
 };
