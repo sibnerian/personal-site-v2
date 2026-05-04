@@ -40,8 +40,5 @@ export class UFO extends Ship {
 
   explode() {
     super.explode();
-    window.gtag('event', 'explode_ufo', {
-      'event_category': 'game',
-    });
   }
 }
